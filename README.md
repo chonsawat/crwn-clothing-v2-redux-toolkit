@@ -33,7 +33,81 @@ git checkout lesson-15
 2. Branch off from lesson-15. This will create a new branch where the code of lesson-15 is the basis for your new branch. You can name your new branch whatever you want! Let's say we use my-main-branch as the name.
 
 ```
-git checkout -b my-main-branch
+git checkout -b my-main
 ```
 
 3. Now you can just code on this branch, push code from this branch up to your forked repo etc. The main thing to remember is that you want to be on this branch for your own code, so remember what you named this branch!
+
+---
+
+Make ti vite project [reference](https://dev.to/asapconet/using-vite-on-an-existing-react-project-208p)
+``` bash
+pnmp add vite @vitejs/plugin-react-refresh
+```
+
+``` js
+// vite.config.js
+
+import { defineConfig } from 'vite'
+import reactRefresh from '@vitejs/plugin-react-refresh'
+
+export default defineConfig({
+  plugins: [reactRefresh()]
+})
+```
+
+``` js
+// package.json
+
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "test": "vite test",
+    "eject": "vite eject"
+  },
+```
+
+```html
+<!-- Before edit -->
+<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+<!-- After edit -->
+...
+<link rel="icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/logo192.png" />
+<link rel="manifest" href="/manifest.json" />
+
+<body>
+...
+    <div id="root"></div>
+    <script type="module" src="/src/index.js"></script>
+</body>
+```
+
+``` js
+/** My customs */
+// vite.config.js
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import svgr from "vite-plugin-svgr";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    svgr({
+      svgrOptions: {
+        
+      },
+    }),
+  ],
+  server: {
+    port: 3000,
+    host: true,
+  },
+  build: {
+    outDir: "./build",
+  },
+});
+```
